@@ -55,19 +55,19 @@ async function main() {
     }),
   ]);
 
-  console.log("✅ Usuários criados:");
+  console.log(" Usuários criados:");
   users.forEach((user) => {
     console.log(`   👤 ${user.name} (ID: ${user.id}) - ${user.email}`);
   });
 
   // 2. Gerar chaves Diffie-Hellman para cada usuário (simulação)
-  console.log("\n🔑 GERANDO CHAVES DE CRIPTOGRAFIA...");
+  console.log("\n GERANDO CHAVES DE CRIPTOGRAFIA...");
   const userKeys = new Map();
 
   for (const user of users) {
     const keys = CryptoUtils.generateDiffieHellmanKeys();
     userKeys.set(user.id, keys);
-    console.log(`   🔐 ${user.name}: Chaves DH geradas`);
+    console.log(`    ${user.name}: Chaves DH geradas`);
   }
 
   // 3. Criar grupos
@@ -118,7 +118,7 @@ async function main() {
     include: { members: true },
   });
 
-  console.log("✅ Grupos criados:");
+  console.log(" Grupos criados:");
   console.log(
     `   👥 ${familyGroup.name} (${familyGroup.members.length} membros)`
   );
@@ -159,7 +159,7 @@ async function main() {
     "Daniel, conseguiu revisar o documento?",
     "Quase terminando Alice! Só faltam os anexos.",
     "Que bom! Pode enviar hoje ainda?",
-    "Claro! Antes das 18h prometo. 📝",
+    "Claro! Antes das 18h prometo. ",
     "Perfeito! Obrigada pela agilidade!",
     "Disponha! Qualquer coisa me avise.",
   ]);
@@ -294,7 +294,7 @@ async function createGroupMessages(group, users, userKeys, messages) {
 
 main()
   .catch(async (e) => {
-    console.error("❌ ERRO NO SEED:", e);
+    console.error(" ERRO NO SEED:", e);
     await prisma.$disconnect();
     process.exit(1);
   })

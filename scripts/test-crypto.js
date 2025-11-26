@@ -25,23 +25,23 @@ async function testCryptoFlow() {
   );
 
   // 3. Verificar se os segredos são iguais
-  console.log("\n5. ✅ Verificando se os segredos são iguais...");
+  console.log("\n5.  Verificando se os segredos são iguais...");
   const secretsMatch = secretAB.equals(secretBA);
   console.log("   Segredos iguais?:", secretsMatch);
 
   if (!secretsMatch) {
-    console.log("❌ ERRO: Segredos não são iguais!");
+    console.log(" ERRO: Segredos não são iguais!");
     return;
   }
 
   // 4. Derivar chaves AES
-  console.log("\n6. 🔐 Derivando chaves AES...");
+  console.log("\n6.  Derivando chaves AES...");
   const aesKeyA = CryptoUtils.deriveAESKeyFromSharedSecret(secretAB);
   const aesKeyB = CryptoUtils.deriveAESKeyFromSharedSecret(secretBA);
 
   // 5. Testar criptografia e descriptografia
   console.log("\n7. 🧪 Testando criptografia/descriptografia...");
-  const originalMessage = "Mensagem super secreta! 🔐";
+  const originalMessage = "Mensagem super secreta! ";
   console.log("   Mensagem original:", originalMessage);
 
   const encrypted = CryptoUtils.encryptAES(originalMessage, aesKeyA);
@@ -51,7 +51,7 @@ async function testCryptoFlow() {
   console.log("   Mensagem descriptografada:", decrypted);
 
   // 6. Verificar resultado
-  console.log("\n8. ✅ Verificando resultado...");
+  console.log("\n8.  Verificando resultado...");
   const success = originalMessage === decrypted;
   console.log("   Teste bem-sucedido?:", success);
 
@@ -61,7 +61,7 @@ async function testCryptoFlow() {
     );
   } else {
     console.log(
-      "\n❌ TESTE FALHOU! Há um problema no sistema de criptografia."
+      "\n TESTE FALHOU! Há um problema no sistema de criptografia."
     );
   }
 }

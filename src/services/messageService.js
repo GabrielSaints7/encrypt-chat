@@ -3,9 +3,9 @@ import { prisma } from "../database/prisma.js";
 
 export class MessageService {
   static async sendDirectMessage(senderId, receiverId, content) {
-    console.log("💾 SALVANDO MENSAGEM NO BANCO...");
-    console.log("👤 De:", senderId, "Para:", receiverId);
-    console.log("📝 Conteúdo (início):", content.substring(0, 50) + "...");
+    console.log("SALVANDO MENSAGEM NO BANCO...");
+    console.log("De:", senderId, "Para:", receiverId);
+    console.log(" Conteúdo (início):", content.substring(0, 50) + "...");
 
     try {
       const message = await prisma.message.create({
@@ -32,12 +32,12 @@ export class MessageService {
         },
       });
 
-      console.log("✅ MENSAGEM SALVA - ID:", message.id);
-      console.log("⏰ Timestamp:", message.createdAt);
+      console.log(" MENSAGEM SALVA - ID:", message.id);
+      console.log("Timestamp:", message.createdAt);
 
       return message;
     } catch (error) {
-      console.error("❌ ERRO AO SALVAR MENSAGEM:", error);
+      console.error(" ERRO AO SALVAR MENSAGEM:", error);
       throw error;
     }
   }
@@ -86,7 +86,7 @@ export class MessageService {
 
       return messages;
     } catch (error) {
-      console.error("❌ ERRO AO BUSCAR MENSAGENS:", error);
+      console.error(" ERRO AO BUSCAR MENSAGENS:", error);
       throw error;
     }
   }

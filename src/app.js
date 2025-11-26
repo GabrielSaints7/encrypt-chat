@@ -41,7 +41,7 @@ async function startServer() {
     console.log(" Conectado ao banco de dados PostgreSQL");
 
     server.listen(PORT, () => {
-      console.log(`🚀 Servidor rodando na porta ${PORT}`);
+      console.log(`Servidor rodando na porta ${PORT}`);
       console.log(" Endpoints disponíveis:");
       console.log(`   http://localhost:${PORT}/`);
       console.log(`   http://localhost:${PORT}/health`);

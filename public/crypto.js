@@ -36,7 +36,7 @@ class FrontendCrypto {
   }
 
   static async computeSharedSecret(privateKey, otherPublicKey) {
-    console.log("🤝 Calculando segredo compartilhado no frontend");
+    console.log(" Calculando segredo compartilhado no frontend");
     console.log(" Chave privada:", privateKey.substring(0, 16) + "...");
     console.log(
       " Chave pública do outro:",
@@ -48,7 +48,7 @@ class FrontendCrypto {
     const sharedSecret = await this.sha256(combined);
 
     console.log(
-      "🤝 Segredo compartilhado calculado:",
+      " Segredo compartilhado calculado:",
       sharedSecret.substring(0, 16) + "..."
     );
     return sharedSecret;
