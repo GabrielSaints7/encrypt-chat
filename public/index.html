@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chat App</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="app">
+      <!-- Tela de seleção de usuário -->
+      <div id="user-selection" class="screen active">
+        <h1>💬 Chat App</h1>
+        <div class="section">
+          <h2>Selecione seu usuário</h2>
+          <div id="users-list">
+            <div class="no-users">Carregando usuários...</div>
+          </div>
+          <button id="create-user-btn">➕ Criar Novo Usuário</button>
+        </div>
+      </div>
+
+      <!-- Tela de criação de usuário -->
+      <div id="create-user" class="screen">
+        <h1>Criar Novo Usuário</h1>
+        <form id="create-user-form">
+          <div class="form-group">
+            <label for="user-name">Nome completo:</label>
+            <input type="text" id="user-name" placeholder="Seu nome" required />
+          </div>
+
+          <div class="form-group">
+            <label for="user-phone">Telefone:</label>
+            <input
+              type="text"
+              id="user-phone"
+              placeholder="(11) 99999-9999"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="user-email">Email:</label>
+            <input
+              type="email"
+              id="user-email"
+              placeholder="seu@email.com"
+              required
+            />
+          </div>
+
+          <div style="text-align: center; margin-top: 20px">
+            <button type="submit"> Criar Usuário</button>
+            <button type="button" id="back-to-selection">↩️ Voltar</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Tela principal do chat -->
+      <div id="chat-main" class="screen">
+        <header
+          style="
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+          "
+        >
+          <h1>💬 Chat</h1>
+          <div style="display: flex; align-items: center; gap: 15px">
+            <div id="current-user-info" style="text-align: right">
+              <strong>Usuário não selecionado</strong>
+            </div>
+            <button id="logout-btn">🚪 Sair</button>
+          </div>
+        </header>
+
+        <div class="chat-container">
+          <!-- Sidebar com conversas -->
+          <div class="sidebar">
+            <h3>💭 Conversas</h3>
+            <div id="direct-chats-list">
+              <div class="no-chats">Selecione um usuário para começar</div>
+            </div>
+          </div>
+
+          <!-- Área de conversa -->
+          <div class="chat-area">
+            <div id="chat-header">
+              <h3 id="current-chat-name">Selecione uma conversa</h3>
+            </div>
+
+            <div id="messages-container">
+              <div class="no-messages">
+                💬 Selecione um contato para ver as mensagens
+              </div>
+            </div>
+
+            <div
+              id="message-input-container"
+              class="message-input-container"
+              style="display: none"
+            >
+              <input
+                type="text"
+                id="message-input"
+                placeholder="Digite sua mensagem..."
+              />
+              <button id="send-message-btn">📤 Enviar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal para nova conversa (simplificado) -->
+      <div id="new-chat-modal" class="modal">
+        <div class="modal-content">
+          <h3>Nova Conversa</h3>
+          <div id="available-users-list"></div>
+          <button id="close-modal">Fechar</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>

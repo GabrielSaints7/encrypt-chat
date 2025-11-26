@@ -1,0 +1,74 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider   = "prisma-client-js"
+  engineType = "client"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  name      String
+  phone     String
+  email     String
+  createdAt DateTime @default(now())
+
+  // Relações corrigidas
+  sentMessages      Message[]      @relation("MessageSender")
+  receivedMessages  Message[]      @relation("MessageReceiver")
+  userGroups        UserGroup[]
+  sentGroupMessages GroupMessage[] @relation("GroupMessageSender")
+}
+
+model Message {
+  id         Int      @id @default(autoincrement())
+  content    String // Mensagem criptografada
+  senderId   Int
+  receiverId Int
+  createdAt  DateTime @default(now())
+
+  // Relações com nomes explícitos para evitar conflitos
+  sender   User @relation("MessageSender", fields: [senderId], references: [id], onDelete: Cascade)
+  receiver User @relation("MessageReceiver", fields: [receiverId], references: [id], onDelete: Cascade)
+}
+
+model Group {
+  id        Int      @id @default(autoincrement())
+  name      String
+  inviteKey String // Chave criptografada do grupo
+  createdAt DateTime @default(now())
+
+  members  UserGroup[]
+  messages GroupMessage[]
+}
+
+model UserGroup {
+  id       Int      @id @default(autoincrement())
+  userId   Int
+  groupId  Int
+  joinedAt DateTime @default(now())
+
+  user  User  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  group Group @relation(fields: [groupId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, groupId])
+}
+
+model GroupMessage {
+  id        Int      @id @default(autoincrement())
+  content   String // Mensagem criptografada
+  senderId  Int
+  groupId   Int
+  createdAt DateTime @default(now())
+
+  sender User  @relation("GroupMessageSender", fields: [senderId], references: [id], onDelete: Cascade)
+  group  Group @relation(fields: [groupId], references: [id], onDelete: Cascade)
+}
