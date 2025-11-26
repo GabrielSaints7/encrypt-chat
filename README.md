@@ -26,7 +26,7 @@ bash
 
 ## Instalação e Configuração
 ### 1. Clone e Acesso ao Projeto
-git clone https://github.com
+git clone https://github.com/GabrielSaints7/encrypt-chat
 
 ### Navegue até o diretório do projeto
 cd nodejs-chat
