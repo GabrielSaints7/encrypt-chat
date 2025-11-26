@@ -92,3 +92,9 @@ Quando inicia, deverá ver no console:
    http://localhost:3000/api/messages
 
    http://localhost:3000/api/groups
+
+
+# Importação de rotas para uso de API
+import o arquivo ./Nodejs-chat.postman_collection.json da raiz para o postman
+
+
